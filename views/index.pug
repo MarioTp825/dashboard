@@ -1,0 +1,45 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet' href='/stylesheets/style.css')
+        link(rel='stylesheet' href='/css/materialize.min.css')
+    body
+        include includes/nav
+        .row
+            .col.s10.m5.offset-s1.offset-m1
+                .row
+                    .col.s10.offset-s1
+                        canvas#stadistics.stadistics
+            .col.s10.m5.offset-s1
+                .row
+                    .col.s10.offset-s1
+                        #sellerInfo.card.horizontal
+        .row
+            .col.s10.offset-s1
+                h3.title Vendedores
+        #single-stadistics.row
+            article.col.s10.offset-s1
+                ul#sellers.collection
+        include includes/footer
+        script(src='/javascripts/materialize.min.js')
+        #app
+        script(src='/javascripts/scripts.js' type='module')
+        script.
+            function setUser(userInfo) {
+                let user = null
+                userData.forEach(us=> function () {
+                        if (us.login.uuid === userInfo)
+                            user = us
+                    })
+                if (user == null)
+                    alert('Error al recuperar la información')
+
+                const htmlResponse = document.querySelector('#sellerInfo')
+                htmlResponse.innerHTML = `<div class="card-image">
+                    <img src="${user.picture.large}" alt="User Picture">
+                </div>
+                <div class="card-stacked">
+                <b>Nombre:&nbsp;</b> ${user.name.first} ${user.name.last}
+                </div>`
+            }
