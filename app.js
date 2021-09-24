@@ -20,9 +20,10 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/css', express.static(__dirname + '/node_modules/materialize-css/dist/css'))
 app.use('/javascripts', express.static(__dirname + '/node_modules/materialize-css/dist/js'))
+app.use('/javascripts', express.static(__dirname + '/node_modules/chart.js/dist/'))
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/getStatistics', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

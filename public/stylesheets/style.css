@@ -5,3 +5,20 @@
 .nav-background {
   background-color: #223333 !important;
 }
+
+.card-info {
+  margin-left: 1em;
+}
+
+.statistics {
+  width: 100%;
+  height: 40em;
+}
+
+.statistics-content {
+  margin-top: 3em;
+}
+
+.align-parent {
+  height: inherit;
+}

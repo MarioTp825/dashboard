@@ -4,17 +4,26 @@ html
         title= title
         link(rel='stylesheet' href='/stylesheets/style.css')
         link(rel='stylesheet' href='/css/materialize.min.css')
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
     body
         include includes/nav
-        .row
-            .col.s10.m5.offset-s1.offset-m1
-                .row
-                    .col.s10.offset-s1
-                        canvas#stadistics.stadistics
-            .col.s10.m5.offset-s1
-                .row
-                    .col.s10.offset-s1
-                        #sellerInfo.card.horizontal
+        .row.statistics-content
+            .col.s9.offset-s1
+                nav
+                    .nav-wrapper
+                        ul#nav-mobile.left.hide-on-med-and-down
+                            li
+                                a(href='#bar' id='#bar') Barras
+                            li
+                                a(href='#linear' id='#linear') Lineal
+                            li
+                                a(href='#pie' id='#pie') Pie
+                canvas#statistics.statistics
+        .row.seller-profile
+            .col.s10.l5.offset-s1.offset-l1.align-parent
+                #sellerInfo.card.horizontal.align-parent
+            .col.s10.l5.offset-s1
+                #sellerNumbers.card.blue-grey.darken-1
         .row
             .col.s10.offset-s1
                 h3.title Vendedores
@@ -22,24 +31,11 @@ html
             article.col.s10.offset-s1
                 ul#sellers.collection
         include includes/footer
-        script(src='/javascripts/materialize.min.js')
+        script(src='/javascripts/materialize.js')
         #app
-        script(src='/javascripts/scripts.js' type='module')
+        script(src='/javascripts/chart.js')
+        script(src='/javascripts/scripts.js')
         script.
-            function setUser(userInfo) {
-                let user = null
-                userData.forEach(us=> function () {
-                        if (us.login.uuid === userInfo)
-                            user = us
-                    })
-                if (user == null)
-                    alert('Error al recuperar la información')
-
-                const htmlResponse = document.querySelector('#sellerInfo')
-                htmlResponse.innerHTML = `<div class="card-image">
-                    <img src="${user.picture.large}" alt="User Picture">
-                </div>
-                <div class="card-stacked">
-                <b>Nombre:&nbsp;</b> ${user.name.first} ${user.name.last}
-                </div>`
-            }
+            console.log(#{statisticsData})
+            var el = document.querySelector('.tabs');
+            var instance = M.Tabs.init(el, {});
